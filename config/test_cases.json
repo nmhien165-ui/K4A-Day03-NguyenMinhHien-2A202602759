@@ -1,0 +1,37 @@
+[
+  {
+    "id": "TC01",
+    "type": "direct_query",
+    "question": "Chào bạn, bạn có thể giới thiệu quy chế học vụ cơ bản của Đại học VinUni không?",
+    "expected_behavior": "Chatbot trả lời trực tiếp từ System Prompt, không cần gọi bất kỳ Tool nào.",
+    "complexity": "Low"
+  },
+  {
+    "id": "TC02",
+    "type": "single_tool_query",
+    "question": "Hãy tra cứu thông tin học vụ của sinh viên SV2026001.",
+    "expected_behavior": "Agent nhận diện nhu cầu tra cứu, tự động phát sinh Tool Call 'academic_query' với mã SV2026001.",
+    "complexity": "Medium"
+  },
+  {
+    "id": "TC03",
+    "type": "appointment_booking",
+    "question": "Hãy đặt lịch tư vấn học vụ cho sinh viên SV2026001 với cố vấn học tập vào lúc 14:00 ngày 20/09/2026.",
+    "expected_behavior": "Agent nhận diện yêu cầu đặt lịch và tự động phát sinh Tool Call 'schedule_appointment' với mã sinh viên SV2026001, thời gian 14:00 ngày 20/09/2026 và thông tin cuộc hẹn tư vấn học vụ.",
+    "complexity": "Medium"
+  },
+  {
+    "id": "TC04",
+    "type": "multi_step_reasoning",
+    "question": "Sinh viên SV2026001 đang gặp vấn đề về kết quả học vụ và muốn được tư vấn. Hãy tra cứu cố vấn học tập của sinh viên này trước, sau đó đặt lịch tư vấn với cố vấn đó vào lúc 10:00 ngày 21/09/2026.",
+    "expected_behavior": "Agent thực hiện chuỗi suy luận ReAct đa bước: bước 1 gọi Tool 'academic_query' để tra cứu thông tin học vụ và cố vấn của SV2026001; bước 2 sử dụng kết quả cố vấn thu được để gọi Tool 'schedule_appointment' đặt lịch vào 10:00 ngày 21/09/2026; cuối cùng xác nhận kết quả cho người dùng.",
+    "complexity": "High"
+  },
+  {
+    "id": "TC05",
+    "type": "edge_case_handling",
+    "question": "Hãy tra cứu thông tin học vụ và lịch thi của sinh viên SV9999999.",
+    "expected_behavior": "Agent gọi Tool 'academic_query' với mã SV9999999. Khi Tool trả về trạng thái NOT_FOUND, Agent phải thông báo rằng không tìm thấy sinh viên trong hệ thống, không tự bịa GPA, lịch thi hoặc thông tin học vụ và hướng dẫn người dùng kiểm tra lại mã sinh viên.",
+    "complexity": "Medium"
+  }
+]
